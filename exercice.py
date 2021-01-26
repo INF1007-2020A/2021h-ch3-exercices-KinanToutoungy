@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 import math
 
 def square_root(a: float) -> float:
@@ -21,15 +20,17 @@ def average(a: float, b: float, c: float) -> float:
 
 
 def to_radians(angle_degs: float, angle_mins: float, angle_secs: float) -> float:
-    degrees = angle_degs*(math.pi/180)
-    angle_rad = math.radians(degrees + (angle_mins/60) + (angle_secs/3660))
+    angle_rad = math.radians(angle_degs + (angle_mins/60) + (angle_secs/3660))
 
     return angle_rad
 
 
 def to_degrees(angle_rads: float) -> tuple:
-    degrees = angle_rads*(math.pi/180)
-    return 0.0, 0.0, 0.0
+    degrees = math.degrees(angle_rads)
+    min = (degrees - math.floor(degrees)) * 60
+    sec = (min - math.floor(min)) * 60
+
+    return math.floor(degrees), min, sec
 
 
 def to_celsius(temperature: float) -> float:
